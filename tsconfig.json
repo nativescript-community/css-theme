@@ -24,8 +24,8 @@
         "paths": {
             "tns-core-modules": ["./node_modules/@nativescript/core"],
             "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
-            "@nativescript-community/csstheme": ["src/extendedinfo"],
-            "@nativescript-community/csstheme/*": ["src/*"],
+            "@nativescript-community/css-theme": ["src/extendedinfo"],
+            "@nativescript-community/css-theme/*": ["src/*"],
             "*": ["node_modules/*"]
         },
         "plugins": [

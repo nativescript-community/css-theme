@@ -1,5 +1,5 @@
 {
-    "name": "@nativescript-community/csstheme",
+    "name": "@nativescript-community/css-theme",
     "version": "1.2.0",
     "description": "Nativescript ExtendedInfo plugin.",
     "main": "./extendedinfo",
@@ -22,9 +22,9 @@
         "email": "martin@akylas.fr"
     },
     "bugs": {
-        "url": "https://github.com/nativescript-community/csstheme/issues"
+        "url": "https://github.com/nativescript-community/css-theme/issues"
     },
     "license": "Apache-2.0",
-    "homepage": "https://github.com/nativescript-community/csstheme",
+    "homepage": "https://github.com/nativescript-community/css-theme",
     "readmeFilename": "README.md"
 }

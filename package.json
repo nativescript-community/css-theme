@@ -1,5 +1,5 @@
 {
-    "name": "@nativescript-community/csstheme",
+    "name": "@nativescript-community/css-theme",
     "version": "1.0.0",
     "scripts": {
         "setup": "ts-patch install",
@@ -36,14 +36,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/nativescript-community/csstheme.git"
+        "url": "git+https://github.com/nativescript-community/css-theme.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/nativescript-community/csstheme/issues"
+        "url": "https://github.com/nativescript-community/css-theme/issues"
     },
-    "homepage": "https://github.com/nativescript-community/csstheme#readme",
+    "homepage": "https://github.com/nativescript-community/css-theme#readme",
     "dependencies": {
         "ts-node": "^9.0.0"
     }
