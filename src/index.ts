@@ -72,7 +72,7 @@ export class Theme {
         Theme.rootView.className = classList.get();
     }
 
-    static toggleMode(isDark) {
+    static toggleDarkMode(isDark) {
         if (isDark === undefined) {
             const mode =
                 Theme.currentMode === Theme.Auto && Application.systemAppearance

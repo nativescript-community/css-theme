@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "setup": "ts-patch install",
-        "tsc": "cp src/extendedinfo.d.ts plugin && tsc -skipLibCheck -d",
+        "tsc": "tsc -skipLibCheck -d",
         "build": "rm -f .tsbuildinfo && npm run tsc",
         "publish": "npm run setup && npm run build && lerna publish",
         "demo.ios": "npm i && npm run tsc && cd demo && tns run ios",
