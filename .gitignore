@@ -22,3 +22,4 @@ Pods
 
 plugin/**/*js.map
 plugin/**/*js
+/plugin/README.md

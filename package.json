@@ -4,7 +4,7 @@
     "scripts": {
         "setup": "ts-patch install",
         "tsc": "tsc -skipLibCheck -d",
-        "build": "rm -f .tsbuildinfo && npm run tsc",
+        "build": "cp README.md plugin && rm -f .tsbuildinfo && npm run tsc",
         "publish": "npm run setup && npm run build && lerna publish",
         "demo.ios": "npm i && npm run tsc && cd demo && tns run ios",
         "demo.android": "npm i && npm run tsc && cd demo && tns run android",
