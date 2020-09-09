@@ -48,27 +48,26 @@ export class Theme {
     static Dark = 'ns-dark';
     static Auto = 'auto';
     static setMode(mode, root = Application.getRootView()) {
+        // we need to store even if root is undefined yet
+        // it will be called again once root exists
         Theme.currentMode = mode;
         Theme.rootView = root;
-
         if (!root || !mode) {
             return;
         }
+        const oldMode = Theme.currentMode;
 
         const classList = new ClassList(Theme.rootView.className);
-
-        classList.remove(Theme.Light, Theme.Dark);
+        classList.remove(oldMode);
         // classList.remove(Theme.currentMode);
         classList.add(Theme.currentMode);
-
         if (Theme.currentMode !== Theme.Auto) {
-            // removeClass(Theme.Light);
-            // removeClass(Theme.Dark);
+            appCommon.setAutoSystemAppearanceChanged(false);
         } else {
+            appCommon.setAutoSystemAppearanceChanged(true);
             // Reset to Auto system theme
             setTimeout(appCommon.systemAppearanceChanged.bind(this, Theme.rootView, Application.systemAppearance()));
         }
-
         Theme.rootView.className = classList.get();
     }
 
@@ -102,30 +101,6 @@ viewCommon.ViewCommon.prototype._setupAsRootView = function () {
     oldSetupAsRootView.call(this, ...arguments);
     Theme.setMode(Theme.currentMode, this);
 };
-
-// Disable SystemAppearance changes if Theme.currentMode is not auto
-const oldSystemAppearanceChanged = appCommon.systemAppearanceChanged;
-
-if (oldSystemAppearanceChanged) {
-    (appCommon as any).systemAppearanceChanged = function () {
-        if (Theme.currentMode === Theme.Auto) {
-            oldSystemAppearanceChanged.call(this, ...arguments);
-        }
-    };
-}
-
-// Make sure to substitute systemAppearance method too, as some plugins call it directly
-const oldSystemAppearance = Application.systemAppearance;
-
-if (oldSystemAppearance) {
-    Application.systemAppearance = function () {
-        if (Theme.currentMode === Theme.Auto) {
-            return oldSystemAppearance.call(this, ...arguments);
-        }
-
-        return Theme.currentMode.substr(3);
-    };
-}
 
 /* Deprecated root class setters, now available in core modules */
 function updateRootClasses(orientation, root = Application.getRootView(), classes: string[] | Set<string> = []) {
