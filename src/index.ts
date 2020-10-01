@@ -66,7 +66,9 @@ export class Theme {
         } else {
             appCommon.setAutoSystemAppearanceChanged(true);
             // Reset to Auto system theme
-            setTimeout(appCommon.systemAppearanceChanged.bind(this, Theme.rootView, Application.systemAppearance()));
+            if (Application.ios.rootController) {
+                setTimeout(appCommon.systemAppearanceChanged.bind(this, Theme.rootView, Application.systemAppearance()));
+            }
         }
         Theme.rootView.className = classList.get();
     }
