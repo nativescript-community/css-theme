@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/nativescript-community/css-theme/compare/v1.2.4...v1.2.5) (2020-10-10)
+
+
+### Bug Fixes
+
+* android crash fix with auto theme ([35ab234](https://github.com/nativescript-community/css-theme/commit/35ab2349cbe5a07f26fa0acf4c772bb02d23c46e))
+
+
+
+
+
 ## [1.2.4](https://github.com/nativescript-community/css-theme/compare/v1.2.3...v1.2.4) (2020-10-01)
 
 
