@@ -47,15 +47,21 @@ export class Theme {
     static Light = 'ns-light';
     static Dark = 'ns-dark';
     static Auto = 'auto';
-    static setMode(mode, root = Application.getRootView()) {
+    static setMode(mode, root?) {
+        if (mode === Theme.currentMode) {
+            return;
+        }
+        if (!root) {
+            root = Application.getRootView();
+        }
         // we need to store even if root is undefined yet
         // it will be called again once root exists
+        const oldMode = Theme.currentMode;
         Theme.currentMode = mode;
         Theme.rootView = root;
         if (!root || !mode) {
             return;
         }
-        const oldMode = Theme.currentMode;
 
         const classList = new ClassList(Theme.rootView.className);
         classList.remove(oldMode);
