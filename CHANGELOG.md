@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.6](https://github.com/nativescript-community/css-theme/compare/v1.2.5...v1.2.6) (2020-10-11)
+
+
+### Bug Fixes
+
+* more fixes ([c033d11](https://github.com/nativescript-community/css-theme/commit/c033d114d8de690ca14672db67f88f46623642b3))
+* rollback to make it work ([d2042ae](https://github.com/nativescript-community/css-theme/commit/d2042ae9d76f0529edbb5c2e1056056f7369ff90))
+
+
+
+
+
 ## [1.2.5](https://github.com/nativescript-community/css-theme/compare/v1.2.4...v1.2.5) (2020-10-10)
 
 
