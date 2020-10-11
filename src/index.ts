@@ -48,15 +48,11 @@ export class Theme {
     static Dark = 'ns-dark';
     static Auto = 'auto';
     static setMode(mode, root?) {
-        if (mode === Theme.currentMode) {
-            return;
-        }
         if (!root) {
             root = Application.getRootView();
         }
         // we need to store even if root is undefined yet
         // it will be called again once root exists
-        const oldMode = Theme.currentMode;
         Theme.currentMode = mode;
         Theme.rootView = root;
         if (!root || !mode) {
@@ -64,17 +60,17 @@ export class Theme {
         }
 
         const classList = new ClassList(Theme.rootView.className);
-        classList.remove(oldMode);
-        // classList.remove(Theme.currentMode);
-        classList.add(Theme.currentMode);
+        classList.remove(Theme.Light, Theme.Dark);
         if (Theme.currentMode !== Theme.Auto) {
+            removeClass(Theme.Light);
+            removeClass(Theme.Dark);
+            classList.add(Theme.currentMode);
             appCommon.setAutoSystemAppearanceChanged(false);
-        } else {
+        }
+        else {
             appCommon.setAutoSystemAppearanceChanged(true);
             // Reset to Auto system theme
-            if (global.isIOS && Application.ios.rootController) {
-                setTimeout(appCommon.systemAppearanceChanged.bind(this, Theme.rootView, Application.systemAppearance()));
-            }
+            setTimeout(appCommon.systemAppearanceChanged.bind(this, Theme.rootView, Application.systemAppearance()));
         }
         Theme.rootView.className = classList.get();
     }
