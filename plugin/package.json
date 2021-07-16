@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/css-theme",
-    "version": "1.2.6",
+    "version": "1.2.7",
     "description": "Nativescript ExtendedInfo plugin.",
     "main": "./extendedinfo",
     "sideEffects": false,
