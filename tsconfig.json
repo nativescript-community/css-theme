@@ -22,20 +22,12 @@
         "baseUrl": ".",
         "outDir": "./plugin",
         "paths": {
-            "tns-core-modules": ["./node_modules/@nativescript/core"],
-            "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
-            "@nativescript-community/css-theme": ["src/extendedinfo"],
+            "@nativescript-community/css-theme": ["src/css-theme"],
             "@nativescript-community/css-theme/*": ["src/*"],
-            "*": ["node_modules/*"]
         },
-        "plugins": [
-          { "transform": "@nativescript/webpack/transformers/ns-transform-native-classes", "type": "raw" }
-        ]
+        "plugins": [{ "transform": "@nativescript/webpack/dist/transformers/NativeClass", "type": "raw" }]
     },
     "include": ["src/**/*", "./references.d.ts"],
     "exclude": ["node_modules", "platforms"],
-    "compileOnSave": false,
-    "angularCompilerOptions": {
-        "skipTemplateCodegen": true
-    }
+    "compileOnSave": false
 }
