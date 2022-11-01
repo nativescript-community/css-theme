@@ -1,6 +1,6 @@
-import * as appCommon from '@nativescript/core/application/application-common';
 import { Application, CSSUtils, View } from '@nativescript/core';
-import * as viewCommon from '@nativescript/core/ui/core/view/view-common';
+import { setAutoSystemAppearanceChanged, systemAppearanceChanged } from '@nativescript/core/application';
+import { ViewCommon } from '@nativescript/core/ui/core/view/view-common';
 
 const removeClass = CSSUtils.removeSystemCssClass;
 
@@ -57,14 +57,14 @@ export class Theme {
             removeClass(Theme.Light);
             removeClass(Theme.Dark);
             classList.add(Theme.currentMode);
-            appCommon.setAutoSystemAppearanceChanged(false);
+            setAutoSystemAppearanceChanged(false);
+            Theme.rootView.className = classList.get();
         }
         else {
-            appCommon.setAutoSystemAppearanceChanged(true);
+            setAutoSystemAppearanceChanged(true);
             // Reset to Auto system theme
-            setTimeout(appCommon.systemAppearanceChanged.bind(this, Theme.rootView, Application.systemAppearance()));
+            systemAppearanceChanged(Theme.rootView, Application.systemAppearance());
         }
-        Theme.rootView.className = classList.get();
     }
 
     static toggleDarkMode(isDark) {
@@ -92,8 +92,11 @@ export class Theme {
 export default Theme;
 
 // Where the magic happens
-const oldSetupAsRootView = viewCommon.ViewCommon.prototype._setupAsRootView;
-viewCommon.ViewCommon.prototype._setupAsRootView = function () {
+const oldSetupAsRootView = ViewCommon.prototype._setupAsRootView;
+ViewCommon.prototype._setupAsRootView = function () {
     oldSetupAsRootView.call(this, ...arguments);
-    Theme.setMode(Theme.currentMode, this);
+    if(this === Application.getRootView()) {
+        //ensure theme is applied on rootView
+        Theme.setMode(Theme.currentMode, this);
+    }
 };
