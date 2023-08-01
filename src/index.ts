@@ -1,6 +1,5 @@
 import { Application, CSSUtils, View } from '@nativescript/core';
-import { setAutoSystemAppearanceChanged, systemAppearanceChanged } from '@nativescript/core/application';
-import { ViewCommon } from '@nativescript/core/ui/core/view/view-common';
+import { ApplicationCommon } from '@nativescript/core/application';
 
 const removeClass = CSSUtils.removeSystemCssClass;
 
@@ -45,25 +44,41 @@ export class Theme {
         }
         // we need to store even if root is undefined yet
         // it will be called again once root exists
+        const oldMode = Theme.currentMode;
         Theme.currentMode = mode;
         Theme.rootView = root;
         if (!root || !mode) {
             return;
         }
+        function addCssClass(rootView, cssClass) {
+            CSSUtils.pushToSystemCssClasses(cssClass);
+            rootView.cssClasses.add(cssClass);
+        }
+    
+        function removeCssClass(rootView, cssClass) {
+            CSSUtils.removeSystemCssClass(cssClass);
+            rootView.cssClasses.delete(cssClass);
+        }
+        // const classList = new ClassList(Theme.rootView.className);
+        // classList.remove(Theme.Light, Theme.Dark);
+        removeCssClass(root, Theme.Dark);
+        removeCssClass(root, Theme.Light);
+        if (oldMode) {
+            removeCssClass(root, oldMode);
+        }
 
-        const classList = new ClassList(Theme.rootView.className);
-        classList.remove(Theme.Light, Theme.Dark);
         if (Theme.currentMode !== Theme.Auto) {
-            removeClass(Theme.Light);
-            removeClass(Theme.Dark);
-            classList.add(Theme.currentMode);
-            setAutoSystemAppearanceChanged(false);
-            Theme.rootView.className = classList.get();
+            // removeClass(Theme.Light);
+            // removeClass(Theme.Dark);
+            // classList.add(Theme.currentMode);
+            addCssClass(root, Theme.currentMode)
+            Application.setAutoSystemAppearanceChanged(false);
+            // Theme.rootView.className = classList.get();
         }
         else {
-            setAutoSystemAppearanceChanged(true);
+            Application.setAutoSystemAppearanceChanged(true);
             // Reset to Auto system theme
-            systemAppearanceChanged(Theme.rootView, Application.systemAppearance());
+            Application.systemAppearanceChanged(Theme.rootView, Application.systemAppearance());
         }
     }
 
@@ -92,11 +107,8 @@ export class Theme {
 export default Theme;
 
 // Where the magic happens
-const oldSetupAsRootView = ViewCommon.prototype._setupAsRootView;
-ViewCommon.prototype._setupAsRootView = function () {
-    oldSetupAsRootView.call(this, ...arguments);
-    if(this === Application.getRootView()) {
-        //ensure theme is applied on rootView
-        Theme.setMode(Theme.currentMode, this);
-    }
+const oldinitRootView = ApplicationCommon.prototype.initRootView;
+ApplicationCommon.prototype.initRootView = function () {
+    oldinitRootView.call(this, ...arguments);
+    Theme.setMode(Theme.currentMode, Application.getRootView());
 };
