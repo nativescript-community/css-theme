@@ -19,7 +19,7 @@
     "devDependencies": {
         "@commitlint/cli": "^17.2.0",
         "@commitlint/config-conventional": "^17.2.0",
-        "@nativescript/core": "8.3.5",
+        "@nativescript/core": "8.5.9",
         "@nativescript/types-android": "8.3.1",
         "@nativescript/types-ios": "8.3.1",
         "@nativescript/webpack": "~5.0.9",
