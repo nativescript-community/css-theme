@@ -41,6 +41,9 @@ export class Theme {
     static setMode(mode, root?) {
         if (!root) {
             root = Application.getRootView();
+            if (root && root.parent) {
+                root = root.parent;
+            }
         }
         // we need to store even if root is undefined yet
         // it will be called again once root exists
@@ -54,7 +57,7 @@ export class Theme {
             CSSUtils.pushToSystemCssClasses(cssClass);
             rootView.cssClasses.add(cssClass);
         }
-    
+
         function removeCssClass(rootView, cssClass) {
             CSSUtils.removeSystemCssClass(cssClass);
             rootView.cssClasses.delete(cssClass);
@@ -71,7 +74,7 @@ export class Theme {
             // removeClass(Theme.Light);
             // removeClass(Theme.Dark);
             // classList.add(Theme.currentMode);
-            addCssClass(root, Theme.currentMode)
+            addCssClass(root, Theme.currentMode);
             Application.setAutoSystemAppearanceChanged(false);
             // Theme.rootView.className = classList.get();
         }
