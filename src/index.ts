@@ -38,7 +38,7 @@ export class Theme {
     static Light = 'ns-light';
     static Dark = 'ns-dark';
     static Auto = 'auto';
-    static setMode(mode, root?) {
+    static setMode(mode, root?, autoRealTheme?) {
         if (!root) {
             root = Application.getRootView();
         }
@@ -54,7 +54,7 @@ export class Theme {
             CSSUtils.pushToSystemCssClasses(cssClass);
             rootView.cssClasses.add(cssClass);
         }
-    
+
         function removeCssClass(rootView, cssClass) {
             CSSUtils.removeSystemCssClass(cssClass);
             rootView.cssClasses.delete(cssClass);
@@ -71,14 +71,14 @@ export class Theme {
             // removeClass(Theme.Light);
             // removeClass(Theme.Dark);
             // classList.add(Theme.currentMode);
-            addCssClass(root, Theme.currentMode)
+            addCssClass(root, Theme.currentMode);
             Application.setAutoSystemAppearanceChanged(false);
             // Theme.rootView.className = classList.get();
         }
         else {
             Application.setAutoSystemAppearanceChanged(true);
             // Reset to Auto system theme
-            Application.systemAppearanceChanged(Theme.rootView, Application.systemAppearance());
+            Application.systemAppearanceChanged(Theme.rootView, autoRealTheme || Application.systemAppearance());
         }
     }
 
