@@ -41,6 +41,9 @@ export class Theme {
     static setMode(mode, root?, autoRealTheme?) {
         if (!root) {
             root = Application.getRootView();
+            if (root && root.parent) {
+                root = root.parent;
+            }
         }
         // we need to store even if root is undefined yet
         // it will be called again once root exists
