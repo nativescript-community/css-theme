@@ -59,8 +59,6 @@ export class Theme {
             CSSUtils.removeSystemCssClass(cssClass);
             rootView.cssClasses.delete(cssClass);
         }
-        // const classList = new ClassList(Theme.rootView.className);
-        // classList.remove(Theme.Light, Theme.Dark);
         removeCssClass(root, Theme.Dark);
         removeCssClass(root, Theme.Light);
         if (oldMode) {
@@ -68,12 +66,8 @@ export class Theme {
         }
 
         if (Theme.currentMode !== Theme.Auto) {
-            // removeClass(Theme.Light);
-            // removeClass(Theme.Dark);
-            // classList.add(Theme.currentMode);
             addCssClass(root, Theme.currentMode);
             Application.setAutoSystemAppearanceChanged(false);
-            // Theme.rootView.className = classList.get();
         }
         else {
             Application.setAutoSystemAppearanceChanged(true);
