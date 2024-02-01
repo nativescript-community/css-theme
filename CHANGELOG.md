@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.13](https://github.com/nativescript-community/css-theme/compare/v1.2.12...v1.2.13) (2024-02-01)
+
+
+### Bug Fixes
+
+* support modal windows ([ccd1060](https://github.com/nativescript-community/css-theme/commit/ccd1060ccaec817a7d2d88bcd33e5a2624663bfe))
+
+
+
+
+
 ## [1.2.12](https://github.com/nativescript-community/css-theme/compare/v1.2.11...v1.2.12) (2024-02-01)
 
 
