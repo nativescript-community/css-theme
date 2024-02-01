@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.12](https://github.com/nativescript-community/css-theme/compare/v1.2.11...v1.2.12) (2024-02-01)
+
+
+### Bug Fixes
+
+* allow to enforce theme in auto (for example for true black mode) ([22dca34](https://github.com/nativescript-community/css-theme/commit/22dca34b48e961ca9f43c328630ad53b34805775))
+
+
+
+
+
 ## [1.2.11](https://github.com/nativescript-community/css-theme/compare/v1.2.10...v1.2.11) (2024-01-09)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.12](https://github.com/nativescript-community/css-theme/compare/v1.2.11...v1.2.12) (2024-02-01)
+
+**Note:** Version bump only for package @nativescript-community/css-theme
+
+
+
+
+
 ## [1.2.11](https://github.com/nativescript-community/css-theme/compare/v1.2.10...v1.2.11) (2024-01-09)
 
 **Note:** Version bump only for package @nativescript-community/css-theme
