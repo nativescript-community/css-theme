@@ -26,5 +26,6 @@
     },
     "license": "Apache-2.0",
     "homepage": "https://github.com/nativescript-community/css-theme",
-    "readmeFilename": "README.md"
+    "readmeFilename": "README.md",
+    "gitHead": "19260b96708d67ed05cb180fcd6e700c24dfe9a5"
 }
