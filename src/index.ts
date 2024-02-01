@@ -33,12 +33,13 @@ export class ClassList {
 
 export class Theme {
     static currentMode: string;
+    static currentRealMode: string;
     static rootView: View;
 
-    static Light = 'ns-light';
-    static Dark = 'ns-dark';
+    static Light = 'light';
+    static Dark = 'dark';
     static Auto = 'auto';
-    static setMode(mode, root?, autoRealTheme?) {
+    static setMode(mode, root?, autoRealTheme?, triggerCssChange = true) {
         if (!root) {
             root = Application.getRootView();
             if (root && root.parent) {
@@ -53,29 +54,47 @@ export class Theme {
         if (!root || !mode) {
             return;
         }
+        const rootModalViews = root._getRootModalViews();
         function addCssClass(rootView, cssClass) {
+            cssClass = `${CSSUtils.CLASS_PREFIX}${cssClass}`;
             CSSUtils.pushToSystemCssClasses(cssClass);
             rootView.cssClasses.add(cssClass);
+            rootModalViews.forEach((rootModalView) => {
+                rootModalView.cssClasses.add(cssClass);
+            });
         }
 
         function removeCssClass(rootView, cssClass) {
+            cssClass = `${CSSUtils.CLASS_PREFIX}${cssClass}`;
             CSSUtils.removeSystemCssClass(cssClass);
             rootView.cssClasses.delete(cssClass);
+            rootModalViews.forEach((rootModalView) => {
+                rootModalView.cssClasses.delete(cssClass);
+            });
         }
         removeCssClass(root, Theme.Dark);
         removeCssClass(root, Theme.Light);
         if (oldMode) {
             removeCssClass(root, oldMode);
         }
+        if (Theme.currentRealMode) {
+            removeCssClass(root, Theme.currentRealMode);
+        }
 
         if (Theme.currentMode !== Theme.Auto) {
+            Theme.currentRealMode = Theme.currentMode;
             addCssClass(root, Theme.currentMode);
             Application.setAutoSystemAppearanceChanged(false);
         }
         else {
             Application.setAutoSystemAppearanceChanged(true);
+            Theme.currentRealMode = autoRealTheme || Application.systemAppearance();
             // Reset to Auto system theme
-            Application.systemAppearanceChanged(Theme.rootView, autoRealTheme || Application.systemAppearance());
+            if (triggerCssChange) {
+                Application.systemAppearanceChanged(Theme.rootView, Theme.currentRealMode as any);
+            } else {
+                addCssClass(root, Theme.currentRealMode);
+            }
         }
     }
 
