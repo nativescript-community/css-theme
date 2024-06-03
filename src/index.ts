@@ -102,7 +102,7 @@ export class Theme {
         if (isDark === undefined) {
             const mode =
                 Theme.currentMode === Theme.Auto && Application.systemAppearance
-                    ? `ns-${Application.systemAppearance()}`
+                    ? Application.systemAppearance()
                     : Theme.getMode();
 
             Theme.setMode(mode === Theme.Light ? Theme.Dark : Theme.Light);
